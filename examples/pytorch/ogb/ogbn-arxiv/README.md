@@ -5,7 +5,10 @@ This repository contains the code to reproduce the performance of "GAT(norm.adj.
 All experiments were runned with a GeForce RTX 1080Ti with 11GB memory.
 
 ## Learning with Self-KD
-We firstly train a pretrained teacher model(GAT(norm.adj.) + label reuse) with previous implement, and then use logits of the teacher model to train a student model with KD loss. The architecture of the student model is the same as teacher model.
+
+Self-KD means Knowledge Distillation where the student model is the same as teacher model.
+
+We firstly train a pretrained teacher model(GAT(norm.adj.) + label reuse) with [previous implement](https://github.com/Espylapiza/dgl/tree/master/examples/pytorch/ogb/ogbn-arxiv), and then use logits of the teacher model and ground truth labels to train a student model with KD loss and CE loss. The architecture of the student model is the same as teacher model.
 
 
 ## Usage
