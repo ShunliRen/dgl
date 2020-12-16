@@ -209,7 +209,7 @@ def run(args, graph, labels, train_idx, val_idx, test_idx, evaluator, n_running)
 
     for epoch in range(1, args.n_epochs + 1):
         tic = time.time()
-        teacher_output = torch.load('./output_73.9/best_pred_run{}.pt'.format(n_running)).cpu().cuda()
+        teacher_output = torch.load('./checkpoint/best_pred_run{}.pt'.format(n_running)).cpu().cuda()
         # teacher_output = torch.load('./output/{}.pt'.format(n_running)).cpu().cuda()
         adjust_learning_rate(optimizer, args.lr, epoch)
 
@@ -284,8 +284,8 @@ def run(args, graph, labels, train_idx, val_idx, test_idx, evaluator, n_running)
         plt.savefig(f"gat_loss_{n_running}.png")
 
     if args.save_pred:
-        os.makedirs("./output", exist_ok=True)
-        torch.save(final_pred.cpu(), f"./output_74.10/{n_running}.pt")
+        os.makedirs("./output_74.16", exist_ok=True)
+        torch.save(final_pred.cpu(), f"./output_74.16/{n_running}.pt")
 
     return best_val_acc, final_test_acc
 

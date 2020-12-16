@@ -180,7 +180,7 @@ def evaluate(args, model, graph, labels, train_idx, val_idx, test_idx, evaluator
     )
 
 def save_checkpoint(pred, run_num):
-    fname = './checkpoint/best_pred_run9'
+    fname = './checkpoint/best_pred_run{}.pt'.format(run_num)
     print('Saving prediction.......')
     torch.save(pred.cpu(),fname)
 
@@ -345,7 +345,7 @@ def main():
 
     # run
     val_accs, test_accs = [], []
-
+    os.makedirs("./checkpoint", exist_ok=True)
     for i in range(args.n_runs):
         seed(args.seed + i)
         val_acc, test_acc = run(args, graph, labels, train_idx, val_idx, test_idx, evaluator, i + 1)
